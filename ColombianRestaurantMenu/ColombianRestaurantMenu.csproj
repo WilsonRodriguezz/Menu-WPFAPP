@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Colombia.jpg" />
+    <None Remove="ColombiaMap.jpg" />
+    <None Remove="Esto-Es-Colombia.png" />
+    <None Remove="marco.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Colombia.jpg" />
+    <Resource Include="ColombiaMap.jpg" />
+    <Resource Include="Esto-Es-Colombia.png" />
+    <Resource Include="marco.jpg" />
+  </ItemGroup>
+
+</Project>

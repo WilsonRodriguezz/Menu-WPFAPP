@@ -1,0 +1,177 @@
+﻿<Window x:Class="ColombianRestaurantMenu.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColombianRestaurantMenu" d:DataContext="{d:DesignInstance Type=local:Model}"
+        mc:Ignorable="d"
+        Title="Esto Es Colombia" Height="690" Width="797" Background="Yellow">
+    <Window.Resources>
+        <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="TextAlignment" Value="Right"/>
+                <Setter Property="IsEnabled" Value="False"/>
+            </Style>
+
+            <Style TargetType="{x:Type ComboBox}">
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} - ${1}">
+                                        <Binding Path="ItemName"/>
+                                        <Binding Path="ItemPrice"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"></ColumnDefinition>
+            <ColumnDefinition Width="130.3"></ColumnDefinition>
+            <ColumnDefinition Width="269.7"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="220.62"></RowDefinition>
+            <RowDefinition Height="28.8"/>
+            <RowDefinition Height="350.58"/>
+        </Grid.RowDefinitions>
+        <Grid Panel.ZIndex="-1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-32,0,0" Grid.RowSpan="3">
+            <Grid.Background>
+                <ImageBrush ImageSource="/marco.jpg"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="500"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Width="151" Height="80" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Esto-Es-Colombia.png"/>
+                </Grid.Background>
+
+            </Grid>
+            <Grid Width="64" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" Margin="50,30,0,0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/ColombiaMap.jpg"/>
+                </Grid.Background>
+            </Grid>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Width="350">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Height="30" FontSize="13
+                       " FontWeight="Bold" Foreground="#FFDDDD18" Grid.ColumnSpan="2" FontStyle="Italic" FontFamily="Comic Sans MS">WELCOME TO THE COLOMBIAN GASTRONOMY</Label>
+                <Label Grid.Row="1" HorizontalAlignment="Left" Foreground="Blue" Height="30" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" FontFamily="Comic Sans MS">Beverages:</Label>
+                <Label Grid.Row="2" HorizontalAlignment="Left" Foreground="Red" Height="30" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" FontFamily="Comic Sans MS">Appetizers:</Label>
+                <Label Grid.Row="3" HorizontalAlignment="Left" Foreground="#FFDDDD18" Height="30" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" FontFamily="Comic Sans MS">Mains:</Label>
+                <Label Grid.Row="4" HorizontalAlignment="Left" Foreground="Blue" Height="30" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" FontFamily="Comic Sans MS">Desserts:</Label>
+                <ComboBox Grid.Row="1" Grid.Column="1" Height="30" ItemsSource="{Binding Beverages}" SelectionChanged="ComboBox_SelectionChanged">
+                </ComboBox>
+                <ComboBox Grid.Row="2" Grid.Column="1" Height="30" ItemsSource="{Binding Appetizers}" SelectionChanged="ComboBox_SelectionChanged">
+                </ComboBox>
+                <ComboBox Grid.Row="3" Grid.Column="1" Height="30" ItemsSource="{Binding MainCourses}" SelectionChanged="ComboBox_SelectionChanged">
+                </ComboBox>
+                <ComboBox Grid.Row="4" Grid.Column="1" Height="30" ItemsSource="{Binding Desserts}" SelectionChanged="ComboBox_SelectionChanged">
+                </ComboBox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Panel.ZIndex="-1" Grid.ColumnSpan="2" Margin="0,-32,0,32" Grid.RowSpan="3">
+            <Grid.Background>
+                <ImageBrush ImageSource="/marco.jpg"/>
+            </Grid.Background>
+            <Grid Width="151" Height="80" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0" Margin="0,0,200,489">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Esto-Es-Colombia.png"/>
+                </Grid.Background>
+
+            </Grid>
+            <Grid Width="64" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" Margin="256,41,0,0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/ColombiaMap.jpg"/>
+                </Grid.Background>
+            </Grid>
+            <DataGrid ItemsSource="{Binding Order, Mode=TwoWay}" Margin="28,140,28,233" RenderTransformOrigin="0.867,0.602" Name="DataGridT"/>
+            <Grid Margin="38,398,38,74" Width="330" HorizontalAlignment="Center" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40">
+                    </RowDefinition>
+                    <RowDefinition Height="40">
+                    </RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Grid.Column="1" Grid.Row="0" Foreground="Blue" FontWeight="Bold">Tax</Label>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Grid.Column="2" Grid.Row="0" Foreground="Red" FontWeight="Bold">Subtotal</Label>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Grid.Column="0" Grid.Row="0" Foreground="#FFDDDD18" FontWeight="Bold">Total</Label>
+
+                <TextBox Grid.Column="0" Grid.Row="1" Height="25" Width="85" Text="{Binding Total}" TextWrapping="NoWrap"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="1" Height="25" Width="85" Text="{Binding Tax}" TextWrapping="NoWrap" ></TextBox>
+                <TextBox Grid.Column="2" Grid.Row="1" Height="25" Width="85" Text="{Binding SubTotal}" TextWrapping="NoWrap"></TextBox>
+
+                <Button Grid.Row="2" Grid.ColumnSpan="2" Height="25" Content="Clear Bill" Foreground="White" FontWeight="Bold" FontSize="15" Click="ClearBill_Executed" Margin="33,8,70,7">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFE100"/>
+                            <GradientStop Color="#FF1A92D6" Offset="0.568"/>
+                            <GradientStop Color="#FF2D6CF7" Offset="0.64"/>
+                            <GradientStop Color="#FFE8EC65" Offset="0.308"/>
+                            <GradientStop Color="#FF1A70D6" Offset="0.432"/>
+                            <GradientStop Color="#FFD61A1A" Offset="0.767"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <Button Grid.Row="2" Grid.ColumnSpan="2" Height="25" Content="Recalculate Bill" Foreground="White" FontWeight="Bold" FontSize="15"  Margin="55,8,48,7" Grid.Column="1" Click="RecalculateBill_Executed">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFE100"/>
+                            <GradientStop Color="#FF1A92D6" Offset="0.568"/>
+                            <GradientStop Color="#FF2D6CF7" Offset="0.64"/>
+                            <GradientStop Color="#FFE8EC65" Offset="0.308"/>
+                            <GradientStop Color="#FF1A70D6" Offset="0.432"/>
+                            <GradientStop Color="#FFD61A1A" Offset="0.767"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </Grid>
+        </Grid>
+        <StatusBar Grid.ColumnSpan="3" Margin="0,319,0,-43" Grid.Row="2" Width="800">
+            <Grid></Grid>
+            <StatusBarItem Margin="20,0,0,0"> Wilson Rodriguez...</StatusBarItem>
+            <ProgressBar Width="100" Height="15" Value="67" Margin="20,0,0,0"/>
+            <Hyperlink NavigateUri="https://estoescolombiarestaurant.ca/">
+                    <Label Height="60" Margin="20,0,0,0" Width="80" Content="">
+                    <Label.Background>
+                        <ImageBrush ImageSource="/Esto-Es-Colombia.png">
+
+                        </ImageBrush>
+                    </Label.Background>
+                </Label>
+                </Hyperlink>
+            
+        </StatusBar>
+    </Grid>
+</Window>
